@@ -8,6 +8,10 @@
 # dependencies
 /node_modules
 
+# docker
+Dockerfile
+.dockerignore
+
 # IDEs and editors
 /.idea
 .project

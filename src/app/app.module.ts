@@ -1,15 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
-import { Routes, RouterModule} from '@angular/router';
+import { AppComponent } from './components/app.component';
+import { AuthComponent } from './components/auth/auth.component';
 import { FormsModule } from '@angular/forms';
 
-const appRoutes: Routes = [
-  {path: 'login', component: AuthComponent},
-]
 
 @NgModule({
   declarations: [
@@ -20,7 +16,7 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

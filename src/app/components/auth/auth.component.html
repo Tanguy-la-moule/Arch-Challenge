@@ -4,7 +4,7 @@
       <div class="card">
         <header class="card-header">
           <div class="card-header-title">
-            <h5 class="title is-5">Login</h5>
+            <h5 class="title is-5">Sign In</h5>
           </div>
         </header>
         <div class="card-content">
@@ -24,9 +24,10 @@
             class="button is-fullwidth is-primary"
             [disabled]="! (login_email && login_password)"
             (click)="login(login_email, login_password)" 
-          >Register</button>
+          >Sign in!</button>
         </div>
       </div>
     </div>
+    <div id="snackbar">{{snackbarText}}</div>
   </div>
 </section>
