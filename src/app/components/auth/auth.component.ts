@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -11,7 +12,7 @@ export class AuthComponent implements OnInit {
   login_password: string;
   snackbarText: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,8 +23,10 @@ export class AuthComponent implements OnInit {
         localStorage.setItem('TOKEN', res.token);
       }
       console.log(localStorage.getItem('TOKEN'));
+      this.router.navigate(['project'])
     }, (err) => {
       this.showSnackBar('Problem with identification');
+      this.login_password = '';
     })
   }
 

@@ -15,7 +15,6 @@ export class AuthService {
         'username': email,
         'password': password,
     };
-    console.log("coucou");
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post(environment.API_URL + 'auth/api-jwt-auth/', payload, {headers: headers})
       .pipe(map(res => {
