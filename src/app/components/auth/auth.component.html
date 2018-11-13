@@ -1,0 +1,33 @@
+<section class="section">
+  <div class="container">
+    <div class="column"><br>
+      <div class="card">
+        <header class="card-header">
+          <div class="card-header-title">
+            <h5 class="title is-5">Sign In</h5>
+          </div>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div class="field">
+              <div class="control">
+                <input class="input is-primary" type="text" placeholder="Email" [(ngModel)]="login_email">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-primary" type="password" placeholder="Password" [(ngModel)]="login_password">
+              </div>
+            </div>
+          </div>
+          <button 
+            class="button is-fullwidth is-primary"
+            [disabled]="! (login_email && login_password)"
+            (click)="login(login_email, login_password)" 
+          >Sign in!</button>
+        </div>
+      </div>
+    </div>
+    <div id="snackbar">{{snackbarText}}</div>
+  </div>
+</section>
