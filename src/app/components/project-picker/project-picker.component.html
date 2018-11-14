@@ -1,18 +1,42 @@
 <div *ngIf="projects && projects.length > 0">
   <h1 class="title is-3">Projects available:</h1>
   <div *ngFor="let project of projects">
-    <div class="card" (click)='get_details(project.id)'>
-      <header class="card-header">
-        <div class="card-header-title">
-          <h3 class="title is-4">{{project.name}}</h3>
+    <div (click)='get_project_streams(project.id)'>
+      <div class="card">
+        <header class="card-header">
+          <div class="card-header-title">
+            <h3 class="title is-4">{{project.name}}</h3>
+          </div>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <h3 class="title is-4"><span>Creator: </span>{{project.creator}}</h3>
+            <h3 class="title is-4"><span>Organisation: </span>{{project.organisation}}</h3>
+            <h3 class="title is-4"><span>Id: </span>{{project.id}}</h3>
+          </div>
         </div>
-      </header>
-      <div class="card-content">
-        <div class="content">
-          <h3 class="title is-4"><span>Creator: </span>{{project.creator}}</h3>
-          <h3 class="title is-4"><span>Organisation: </span>{{project.organisation}}</h3>
-        </div>
+      </div><br>
+    </div>
+  </div><br>
+  <h1 class="title is-3">Streams available:</h1>
+  <div *ngFor="let stream of streams">
+      <div>
+        <div class="card">
+          <header class="card-header">
+            <div class="card-header-title">
+              <h3 class="title is-4">{{stream.id}}</h3>
+            </div>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <h3 class="title is-4"><span>Slug: </span>{{stream.slug}}</h3>
+              <h3 class="title is-4"><span>Input: </span>{{stream.input_unit}}</h3>
+              <h3 class="title is-4"><span>Output: </span>{{stream.output_unit}}</h3>
+              <h3 class="title is-4"><span>Device: </span>{{stream.device}}</h3>
+              <h3 class="title is-4"><span>Project: </span>{{stream.project}}</h3>
+            </div>
+          </div>
+        </div><br>
       </div>
-    </div><br>
-  </div>
+    </div>
 </div>

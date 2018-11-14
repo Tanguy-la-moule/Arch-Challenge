@@ -7,15 +7,18 @@ import { FormsModule } from '@angular/forms';
 
 import { ProjectPickerComponent } from './components/project-picker/project-picker.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { StreamComponent } from './components/stream/stream.component';
 
 import { ProjectService} from './services/projects/project.service';
 import { AuthService } from './services/auth/auth.service';
+import { DataService } from './services/data/data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    ProjectPickerComponent
+    ProjectPickerComponent,
+    StreamComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +29,7 @@ import { AuthService } from './services/auth/auth.service';
   providers: [
     ProjectService,
     AuthService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
