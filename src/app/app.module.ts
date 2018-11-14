@@ -12,13 +12,15 @@ import { StreamComponent } from './components/stream/stream.component';
 import { ProjectService} from './services/projects/project.service';
 import { AuthService } from './services/auth/auth.service';
 import { DataService } from './services/data/data.service';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     ProjectPickerComponent,
-    StreamComponent
+    StreamComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,

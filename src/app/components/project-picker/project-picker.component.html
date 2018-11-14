@@ -1,11 +1,18 @@
 <div *ngIf="projects && projects.length > 0">
-  <h1 class="title is-3">Projects available:</h1>
+  <h1 class="title is-3">Click on the project of your choice:</h1>
   <div *ngFor="let project of projects">
-    <div (click)='get_project_streams(project.id)'>
+    <div>
       <div class="card">
         <header class="card-header">
           <div class="card-header-title">
             <h3 class="title is-4">{{project.name}}</h3>
+            <button 
+              class="button is-medium is-rounded"
+              (click)='update_selected_project(project.id)'
+            >
+              <span *ngIf='project.id != selected_project'>Show Streams</span>
+              <span *ngIf='project.id == selected_project'>Hide Streams</span>
+            </button>
           </div>
         </header>
         <div class="card-content">
@@ -15,28 +22,10 @@
             <h3 class="title is-4"><span>Id: </span>{{project.id}}</h3>
           </div>
         </div>
-      </div><br>
+        <app-stream *ngIf='project.id == selected_project' [streams]="selected_streams"></app-stream>
+      </div>
+      <br>
     </div>
   </div><br>
-  <h1 class="title is-3">Streams available:</h1>
-  <div *ngFor="let stream of streams">
-      <div>
-        <div class="card">
-          <header class="card-header">
-            <div class="card-header-title">
-              <h3 class="title is-4">{{stream.id}}</h3>
-            </div>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <h3 class="title is-4"><span>Slug: </span>{{stream.slug}}</h3>
-              <h3 class="title is-4"><span>Input: </span>{{stream.input_unit}}</h3>
-              <h3 class="title is-4"><span>Output: </span>{{stream.output_unit}}</h3>
-              <h3 class="title is-4"><span>Device: </span>{{stream.device}}</h3>
-              <h3 class="title is-4"><span>Project: </span>{{stream.project}}</h3>
-            </div>
-          </div>
-        </div><br>
-      </div>
-    </div>
+  <app-chart [slug]="'s--0000-002e--0000-0000-0000-0034--5001'"></app-chart>
 </div>

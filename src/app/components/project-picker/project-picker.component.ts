@@ -13,6 +13,9 @@ import { Stream } from '../../models/stream'
 export class ProjectPickerComponent implements OnInit {
   token: string;
   projects: Project[];
+  selected_project: string;
+  selected_streams: Stream[];
+
   streams: Stream[];
 
   constructor(private router: Router, private projectService: ProjectService, private dataService: DataService) { }
@@ -23,14 +26,25 @@ export class ProjectPickerComponent implements OnInit {
       this.router.navigate(['login'])
     } else {
       this.get_projects();
-      this.get_streams();
-      
     }
   }
 
-  get_project_streams(id){
+  update_selected_project(project_id){
+    if(this.selected_project === project_id){
+      this.selected_project = '';
+    } else {
+      this.get_selected_streams(project_id);
+      this.selected_project = project_id;
+    }
+  }
+
+  get_selected_streams(id){
     this.dataService.get_projects_stream(id).subscribe(res => {
-      console.log(res.results);
+      this.selected_streams = []
+      res.results.forEach((result) => {
+        const stream = new Stream(result.id, result.device, result.slug, result.input_unit.unit_full, result.output_unit.unit_full, result.project_id);
+        this.selected_streams.push(stream);
+      })
     });
   }
 
@@ -40,18 +54,6 @@ export class ProjectPickerComponent implements OnInit {
       res.results.forEach((result) => {
         const project = new Project(result.id, result.name, result.created_by, result.org);
         this.projects.push(project);
-      })
-    }, err => {
-      console.log(err);
-    })
-  }
-
-  get_streams(){
-    this.dataService.get_all_streams().subscribe(res => {
-      this.streams = []
-      res.results.forEach((result) => {
-        const stream = new Stream(result.id, result.device, result.slug, result.input_unit.unit_full, result.output_unit.unit_full, result.project_id);
-        this.streams.push(stream);
       })
     }, err => {
       console.log(err);
