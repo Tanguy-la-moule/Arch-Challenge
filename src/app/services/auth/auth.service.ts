@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { map } from 'rxjs/operators';
 
@@ -8,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
 
   login(email, password) {
     const payload = {
@@ -20,5 +21,10 @@ export class AuthService {
       .pipe(map(res => {
         return res.json();
       }));
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 }

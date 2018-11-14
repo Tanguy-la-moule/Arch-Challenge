@@ -2,6 +2,17 @@
 
 <div class="section">
   <div class="container">
+    <nav class="navbar is-transparent" *ngIf="router.url != '/login'">
+      <div class="navbar-brand">
+        <h3 class="title is-1">Arch Challenge</h3>
+      </div>
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-end">
+          <button class="button is-medium is-rounded" (click)="logout()">Log out</button>
+        </div>
+      </div>
+    </nav><br>
+
     <router-outlet></router-outlet>
   </div>
 </div>

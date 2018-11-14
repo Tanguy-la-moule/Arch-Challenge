@@ -1,3 +1,18 @@
-<p>
-  project-picker works!
-</p>
+<div *ngIf="projects && projects.length > 0">
+  <h1 class="title is-3">Projects available:</h1>
+  <div *ngFor="let project of projects">
+    <div class="card" (click)='get_details(project.id)'>
+      <header class="card-header">
+        <div class="card-header-title">
+          <h3 class="title is-4">{{project.name}}</h3>
+        </div>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <h3 class="title is-4"><span>Creator: </span>{{project.creator}}</h3>
+          <h3 class="title is-4"><span>Organisation: </span>{{project.organisation}}</h3>
+        </div>
+      </div>
+    </div><br>
+  </div>
+</div>
