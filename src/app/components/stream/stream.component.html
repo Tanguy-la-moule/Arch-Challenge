@@ -1,15 +1,16 @@
-<div *ngFor='let stream of streams'>
-    <div class="card">
-        <header class="card-header" (click)='update_selected_stream(stream.id, stream.slug)'>
-            <div class="card-header-title">
-            <h3 class="title is-4">{{stream.id}}</h3>
-            </div>
-        </header>
-        <div class="card-content" *ngIf="selected_stream == stream.id">
-            <div class="content">
-                <app-chart [slug]='selected_slug'></app-chart>
+<div style="width:95%; margin: auto;">
+    <div *ngFor='let stream of streams'>
+        <div class="card">
+            <header class="card-header" (click)='update_selected_stream(stream.id, stream.slug)'>
+                <div class="card-header-title">
+                <h3 class="title is-4"><span>Id: </span>{{stream.id}}</h3>
+                </div>
+            </header>
+            <div class="card-content" *ngIf="selected_stream == stream.id">
+                <div class="content">
+                    <app-chart [slug]='selected_slug'></app-chart>
+                </div>
             </div>
         </div>
     </div>
 </div>
-

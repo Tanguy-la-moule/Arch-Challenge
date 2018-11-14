@@ -10,21 +10,25 @@ import { Chart } from 'chart.js';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
+  loaded: boolean;
   input: number[];
   output: number[];
   time: string[];
   @Input() slug: string;
   chart;
+  
 
   constructor(private router: Router, private projectService: ProjectService, private dataService: DataService) { }
 
   ngOnInit() {
+    this.loaded = false;
     this.dataService.get_stream_data(this.slug).subscribe(res => {
       [this.input, this.output, this.time] = this.parse_data(res.results);
       console.log(this.input);
       console.log(this.output);
       console.log(this.time);
       var ctx = document.getElementById("canvas");
+      this.loaded = true;
       this.chart = new Chart(ctx, {
         type: 'line',
         data: {
