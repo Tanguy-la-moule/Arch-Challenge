@@ -19,15 +19,6 @@ export class ProjectService {
       }));
   };
 
-  get_projectss() {
-    const token = localStorage.getItem('TOKEN');
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'JWT ' + token});
-    return this.http.get(environment.API_URL + 'project/', {headers: headers})
-      .pipe(map(res => {
-        return res.json();
-      }));
-  };
-
   get_projects_details(id: string) {
     const token = localStorage.getItem('TOKEN');
     console.log(id);
