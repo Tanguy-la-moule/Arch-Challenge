@@ -3,7 +3,7 @@
         <div class="card">
             <header class="card-header" (click)='update_selected_stream(stream.id, stream.slug)'>
                 <div class="card-header-title">
-                <h3 class="title is-4"><span>Id: </span>{{stream.id}}</h3>
+                <h3 class="title is-4"><span>Device: </span>{{stream.device}}</h3>
                 </div>
             </header>
             <div class="card-content" *ngIf="selected_stream == stream.id">

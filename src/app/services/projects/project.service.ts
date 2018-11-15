@@ -1,31 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Project } from '../../models/project';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
-  get_projects() {
-    const token = localStorage.getItem('TOKEN');
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'JWT ' + token});
-    return this.http.get(environment.API_URL + 'project/', {headers: headers})
-      .pipe(map(res => {
-        return res.json();
-      }));
-  };
-
-  get_projects_details(id: string) {
-    const token = localStorage.getItem('TOKEN');
-    console.log(id);
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'JWT ' + token});
-    return this.http.get(environment.API_URL + 'project/' + id + '/', {headers: headers})
-      .pipe(map(res => {
-        return res.json();
-      }));
-  };
+  get_projects(): Observable<Array<Project>> {
+    return new Observable( (observer) => {
+      this.http.get(environment.API_URL + 'project/')
+        .subscribe((data) => {
+          const projects: Array<Project> = data['results'].map( project => {
+            return {
+              id: project.id,
+              name: project.name,
+              creator: project.created_by,
+              organisation: project.org,
+            };
+          });
+          observer.next(projects);
+        });
+      }
+    );
+  }
 }

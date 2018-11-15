@@ -38,25 +38,19 @@ export class ProjectPickerComponent implements OnInit {
     }
   }
 
-  get_selected_streams(id){
-    this.dataService.get_projects_stream(id).subscribe(res => {
-      this.selected_streams = []
-      res.results.forEach((result) => {
-        const stream = new Stream(result.id, result.device, result.slug, result.input_unit.unit_full, result.output_unit.unit_full, result.project_id);
-        this.selected_streams.push(stream);
-      })
-    });
-  }
-
   get_projects(){
-    this.projectService.get_projects().subscribe(res => {
-      this.projects = []
-      res.results.forEach((result) => {
-        const project = new Project(result.id, result.name, result.created_by, result.org);
-        this.projects.push(project);
-      })
+    this.projectService.get_projects().subscribe(projects => {
+      this.projects = projects;
     }, err => {
       console.log(err);
     })
+  }
+
+  get_selected_streams(id){
+    this.dataService.get_projects_stream(id).subscribe(streams => {
+      this.selected_streams = streams
+    }, err => {
+      console.log(err)
+    });
   }
 }

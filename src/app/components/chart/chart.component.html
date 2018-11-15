@@ -1,6 +1,7 @@
 <div>
-  <div style="margin:auto;">
-    <div class="lds-dual-ring" *ngIf='!loaded'></div>
-  </div>
+  <div class="lds-dual-ring" *ngIf='!loaded'></div>
+  <h3 class="title is-4" *ngIf='isEmpty'>There is no data to display</h3>
   <canvas id="canvas">{{chart}}</canvas>
+  <h3 class="title is-4" *ngIf='!isEmpty && data'><span *ngIf='data.irigation_number > 0'>Number of irigations: {{data.irigation_number}}</span></h3>
+  <h3 class="title is-4" *ngIf='!isEmpty && data'><span>Date of first data point: {{data.date}}</span></h3>
 </div>

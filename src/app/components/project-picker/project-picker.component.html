@@ -5,10 +5,10 @@
       <div class="card">
         <header class="card-header">
           <div class="card-header-title columns">
-            <div class='column is-three-quarters'>
+            <div class='column is-four-fifth'>
                 <h3 class="title is-4">{{project.name}}</h3>
             </div>
-            <div class='column is-one-quarters'>
+            <div class='column is-one-fifth'>
               <button 
                 class="button is-medium is-rounded"
                 (click)='update_selected_project(project.id)'
@@ -23,7 +23,7 @@
           <div class="content">
             <h3 class="title is-4"><span>Creator: </span>{{project.creator}}</h3>
             <h3 class="title is-4"><span>Organisation: </span>{{project.organisation}}</h3>
-            <h3 class="title is-4" *ngIf='project.id == selected_project'>Streams:</h3>
+            <h3 class="title is-4" *ngIf='project.id == selected_project'>Streams: (click on a device to display data)</h3>
           </div>
         </div>
         <app-stream *ngIf='project.id == selected_project' [streams]="selected_streams"></app-stream>

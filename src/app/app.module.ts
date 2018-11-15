@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ProjectPickerComponent } from './components/project-picker/project-picker.component';
 import { AuthComponent } from './components/auth/auth.component';
@@ -13,6 +14,9 @@ import { ProjectService} from './services/projects/project.service';
 import { AuthService } from './services/auth/auth.service';
 import { DataService } from './services/data/data.service';
 import { ChartComponent } from './components/chart/chart.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './services/auth/token.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -26,12 +30,18 @@ import { ChartComponent } from './components/chart/chart.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     ProjectService,
     AuthService,
-    DataService
+    DataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
